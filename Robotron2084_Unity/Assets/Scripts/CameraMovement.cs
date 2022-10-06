@@ -7,7 +7,6 @@ public class CameraMovement : MonoBehaviour
 {
     Vector3 originalPos;
     Quaternion originalRot;
-    Vector3 degreeAndDirectionOfMovement;
     [SerializeField] GameObject player;
     PlayerMovement playerScript;
     Transform playerTransform;
@@ -19,43 +18,41 @@ public class CameraMovement : MonoBehaviour
         playerTransform = player.GetComponent<Transform>();
         originalPos = transform.position;
         originalRot = transform.rotation;
-        degreeAndDirectionOfMovement = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
         //convert player movement into vector3
-        degreeAndDirectionOfMovement += playerTransform.forward;
-        degreeAndDirectionOfMovement.x = playerScript.moveInput.x + transform.position.x;
-        degreeAndDirectionOfMovement.z = playerScript.moveInput.y + transform.position.z;
 
+        // calculate the direction in which the player is moving relative to the player
+        Vector3 degreeAndDirectionOfMovement = Vector3.zero;
+        degreeAndDirectionOfMovement.x = playerScript.moveInput.x + playerTransform.position.x;
+        degreeAndDirectionOfMovement.z = playerScript.moveInput.y + playerTransform.position.z;
+        // move camera to the original position so we don't slowly move down
         degreeAndDirectionOfMovement.y = originalPos.y;
 
-
+        // necessary as well to prevent us from moving down
         Vector3 playerPositionOnCameraY = playerTransform.position;
         playerPositionOnCameraY.y = originalPos.y;
 
+
+        // https://www.youtube.com/watch?v=YJB1QnEmlTs Timestamp: t=7:25
+        double k = Math.Abs(1.0 - Math.Pow(10, (double)Time.deltaTime));
+        
+        // if the player isn't moving
         if (playerScript.moveInput == Vector2.zero)
         {
-
-            Vector3 interpolatedPosition = Vector3.Lerp(transform.position, playerPositionOnCameraY, Time.deltaTime);
+            // move back towards the player
+            Vector3 interpolatedPosition = Vector3.Slerp(transform.position, playerPositionOnCameraY, (float)k);
             transform.position = interpolatedPosition;
         }
+        // interpolate between the current position and the direction of the movement
         else
         {
-
-            float cameraToPlayerDistance = Vector3.Distance(playerPositionOnCameraY, transform.position);
-
-            Vector3 interpolatedPosition = Vector3.Lerp(transform.position, degreeAndDirectionOfMovement, Time.deltaTime);
-            if(cameraToPlayerDistance < 1.5f)
-            {
-                transform.position = interpolatedPosition;
-            }
+            Vector3 interpolatedPosition = Vector3.Lerp(transform.position, degreeAndDirectionOfMovement, (float)k);
+            transform.position = interpolatedPosition;
         }
-
-        //interpolate between the current position and the direction of the movement
-
-        transform.rotation = originalRot;
+        //transform.rotation = originalRot;
     }
 }

@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(playerAim.origin, playerAim.direction, out hit, 100, notPlayer))
             {
                 Vector3 hitPosition = hit.point;
-                hitPosition.y = transform.position.y;
+                hitPosition.y = meshObject.transform.position.y;
                 meshObject.transform.LookAt(hitPosition);
                 //Debug.Log(meshObject.transform.forward);
                 //Debug.DrawLine(hitPosition, transform.forward * 100, Color.yellow, 4);

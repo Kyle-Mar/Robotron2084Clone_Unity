@@ -7,6 +7,6 @@ public class PlayerDeath : Death
 
     public override void death()
     {
-        Debug.Log("hello world!");
+        Destroy(this.gameObject);
     }
 }

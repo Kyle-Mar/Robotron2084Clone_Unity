@@ -54,10 +54,6 @@ public class EnemyMovement : MonoBehaviour
         {
             isCollidingWithPlayer = true;
         }
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     void OnCollisionExit(Collision collision)

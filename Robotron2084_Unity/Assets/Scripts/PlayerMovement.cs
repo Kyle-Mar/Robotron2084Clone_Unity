@@ -9,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public Vector2 moveInput = new Vector2(0, 0);
     public Vector2 lookInput = new Vector2(0, 0);
+    public bool isWalking;
     float fireInput = 0;
-    float speed = 15;
     bool doesAimNeedRecalculated = false;
+    float speed = 15;
     Ray playerAim;
     Camera mainCamera;
     GameObject meshObject;
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //transform.Translate(new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * speed);
         rb.velocity = (new Vector3(moveInput.x, 0, moveInput.y) * speed);
+        isWalking = rb.velocity.magnitude == 0 ? false : true;
         
     }
 
@@ -55,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
             LayerMask notPlayer = ~(LayerMask.GetMask("Player"));
             if (Physics.Raycast(playerAim.origin, playerAim.direction, out hit, 100, notPlayer))
             {
+                // TODO: do something if hit.point doesn't exist 
                 Vector3 hitPosition = hit.point;
                 hitPosition.y = meshObject.transform.position.y;
                 meshObject.transform.LookAt(hitPosition);

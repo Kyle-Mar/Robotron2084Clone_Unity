@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("HELLO");
         if (collision.gameObject.CompareTag("Bullet"))
         {
             health.takeDamage(10f);

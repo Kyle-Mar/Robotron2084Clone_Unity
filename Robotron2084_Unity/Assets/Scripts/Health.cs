@@ -35,13 +35,14 @@ public class Health : MonoBehaviour
             
             if (canTakeDamage)
             {
+                Debug.Log(this.gameObject.name);
                 Debug.Log(health);
                 health -= damageValue;
+                if (health <= 0)
+                {
+                    death.death();
+                }
             }
-        }
-        else
-        {
-            death.death();
         }
     }
 

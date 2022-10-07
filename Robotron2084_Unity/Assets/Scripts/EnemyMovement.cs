@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    GameObject player;
+    [SerializeField] GameObject player;
     GameObject meshObject;
     Vector3 currentDirection;
     [SerializeField] Vector3 currentRandomDirection;
     Rigidbody rb;
     bool isCollidingWithPlayer;
-    bool isMovingTowardsPlayer;
+    bool isMovingTowardsPlayer = false;
     float speed = 5;
 
     // Start is called before the first frame update
@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     {
         player = GameObject.Find("Player");
         meshObject = transform.Find("EnemyMesh").gameObject;
+        NewRandomDirection();
         StartCoroutine(ChooseNewDirection(5f));
         rb = GetComponent<Rigidbody>();
     }
@@ -64,19 +65,21 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    void NewRandomDirection()
+    {
+        currentRandomDirection = new Vector3(meshObject.transform.position.x + Random.Range(-2, 2), 0, meshObject.transform.position.z + Random.Range(-2, 2));
+        if (!isMovingTowardsPlayer)
+        {
+            meshObject.transform.LookAt(currentRandomDirection);
+        }
+    }
+
     IEnumerator ChooseNewDirection(float delay)
     {
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            currentRandomDirection = new Vector3(meshObject.transform.position.x + Random.Range(-2, 2), 0, meshObject.transform.position.z + Random.Range(-2,2));
-            if (!isMovingTowardsPlayer)
-            {
-                meshObject.transform.LookAt(currentRandomDirection);
-            }
-            Debug.Log("EVENT!");
-
+            NewRandomDirection();
         }
     }
-
 }

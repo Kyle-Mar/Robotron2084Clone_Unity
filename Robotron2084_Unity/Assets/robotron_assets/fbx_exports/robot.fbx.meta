@@ -75,39 +75,39 @@ ModelImporter:
       - path: 
         weight: 1
       - path: MainSkeleton
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.L
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.L/LLeg.L
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.L/LLeg.L/Foot.L
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.L/LLeg.L/Foot.L/Foot.L_end
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.R
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.R/LLeg.R
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.R/LLeg.R/Foot.R
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/ULeg.R/LLeg.R/Foot.R/Foot.R_end
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/Waist
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/Waist/Chest
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Neck
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Neck/Head
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Neck/Head/Head_end
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L
         weight: 1
       - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/Elbow.L
@@ -149,29 +149,29 @@ ModelImporter:
       - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R/FArm.R/Palm.R/Thumb.R/Thumb.R_end
         weight: 1
       - path: MainSkeleton/Main/FootController.L
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/FootController.L/Knee.L
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/FootController.L/Knee.L/Knee.L_end
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/FootController.R
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/FootController.R/Knee.R
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/FootController.R/Knee.R/Knee.R_end
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/PalmController.L
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/PalmController.L/PalmController.L_end
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/PalmController.R
-        weight: 0
+        weight: 1
       - path: MainSkeleton/Main/PalmController.R/PalmController.R_end
-        weight: 0
+        weight: 1
       - path: RobotMesh
-        weight: 0
-      maskType: 0
-      maskSource: {instanceID: 0}
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: 8a2a8b3316925da44b356410eb4a53fd, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: MainSkeleton|Idle
@@ -198,8 +198,106 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
+      transformMask:
+      - path: 
+        weight: 1
+      - path: MainSkeleton
+        weight: 0
+      - path: MainSkeleton/Main
+        weight: 1
+      - path: MainSkeleton/Main/Controller
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.L
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.L/LLeg.L
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.L/LLeg.L/Foot.L
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.L/LLeg.L/Foot.L/Foot.L_end
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.R
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.R/LLeg.R
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.R/LLeg.R/Foot.R
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/ULeg.R/LLeg.R/Foot.R/Foot.R_end
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/Waist
+        weight: 1
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Neck
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Neck/Head
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Neck/Head/Head_end
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/Elbow.L
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/Elbow.L/Elbow.L_end
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/UArm.L
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/UArm.L/FArm.L
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/UArm.L/FArm.L/Palm.L
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/UArm.L/FArm.L/Palm.L/Fingers.L
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/UArm.L/FArm.L/Palm.L/Fingers.L/Fingers.L_end
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/UArm.L/FArm.L/Palm.L/Thumb.L
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.L/UArm.L/FArm.L/Palm.L/Thumb.L/Thumb.L_end
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/Elbow.R
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/Elbow.R/Elbow.R_end
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R/FArm.R
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R/FArm.R/Palm.R
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R/FArm.R/Palm.R/Fingers.R
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R/FArm.R/Palm.R/Fingers.R/Fingers.R_end
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R/FArm.R/Palm.R/Thumb.R
+        weight: 0
+      - path: MainSkeleton/Main/Controller/Hips/Waist/Chest/Shoulder.R/UArm.R/FArm.R/Palm.R/Thumb.R/Thumb.R_end
+        weight: 0
+      - path: MainSkeleton/Main/FootController.L
+        weight: 1
+      - path: MainSkeleton/Main/FootController.L/Knee.L
+        weight: 1
+      - path: MainSkeleton/Main/FootController.L/Knee.L/Knee.L_end
+        weight: 1
+      - path: MainSkeleton/Main/FootController.R
+        weight: 1
+      - path: MainSkeleton/Main/FootController.R/Knee.R
+        weight: 1
+      - path: MainSkeleton/Main/FootController.R/Knee.R/Knee.R_end
+        weight: 1
+      - path: MainSkeleton/Main/PalmController.L
+        weight: 0
+      - path: MainSkeleton/Main/PalmController.L/PalmController.L_end
+        weight: 1
+      - path: MainSkeleton/Main/PalmController.R
+        weight: 0
+      - path: MainSkeleton/Main/PalmController.R/PalmController.R_end
+        weight: 1
+      - path: RobotMesh
+        weight: 0
+      maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16

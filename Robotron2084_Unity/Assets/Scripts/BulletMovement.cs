@@ -6,6 +6,7 @@ using UnityEngine;
 public class BulletMovement : MonoBehaviour
 {
     public float speed = 10;
+    public Vector3 bulletVelocity;
     Vector3 initDirection;
     Rigidbody rb;
     public Vector3 playerVelocity;
@@ -15,12 +16,13 @@ public class BulletMovement : MonoBehaviour
     {
         initDirection = transform.forward;
         rb = GetComponent<Rigidbody>();
+        bulletVelocity = (initDirection) * (speed + playerVelocity.magnitude);
     }
 
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = (initDirection) * (speed + playerVelocity.magnitude);
+        rb.velocity = bulletVelocity;
         Debug.Log(rb.velocity);
     }
 

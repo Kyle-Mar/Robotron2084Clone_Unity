@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  bulletVelocity: {x: 0, y: 0, z: 0}
   playerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &8475627906846743837
 MonoBehaviour:
@@ -182,7 +183,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1.55
+  m_Time: 0.15
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.49570495

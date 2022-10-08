@@ -45,11 +45,6 @@ public class EnemySpawner : MonoBehaviour
 		Vector3 spawnPosition = transform.position + currentAngleVector;
 		spawnPosition.y = 0;
 		Instantiate(Enemy, spawnPosition, Quaternion.identity);
-
-		if( currentWave >= numWaves)
-        {
-			Destroy(this.gameObject);
-        }
     }
 
 	void SpawnWave()
@@ -59,7 +54,11 @@ public class EnemySpawner : MonoBehaviour
 			SpawnEnemy();
         }
 		currentWave += 1;
-    }
+		if (currentWave >= numWaves)
+		{
+			Destroy(this.gameObject);
+		}
+	}
 
 
 	IEnumerator WaveTimer (float time)

@@ -7,9 +7,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     Health health;
-
     void Start()
     {
+        LevelManager.LevelManagerInstance.AddToEnemiesList(this.gameObject);
         health = GetComponent<Health>();
     }
     void OnCollisionEnter(Collision collision)

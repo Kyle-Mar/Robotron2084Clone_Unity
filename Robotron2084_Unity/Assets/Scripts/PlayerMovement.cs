@@ -46,6 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Look(InputAction.CallbackContext context)
     {
+        if (LevelManager.LevelManagerInstance.gameIsPaused)
+        {
+            return;
+        }
         Vector2 mouseDelta = context.ReadValue<Vector2>();
         if(playerInput.currentControlScheme == "Keyboard&Mouse")
         {
@@ -69,6 +73,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context)
     {
+        if (LevelManager.LevelManagerInstance.gameIsPaused)
+        {
+            return;
+        }
         fireInput = context.ReadValue<float>();
         if (fireInput > .5f && context.performed)
         {

@@ -21,9 +21,18 @@ public class LevelManager : MonoBehaviour
         get { return playerInstance ?? (playerInstance = Instantiate(Resources.Load("Player") as GameObject)); }
     }
 
+    private static GameObject musicPlayerInstance;
+
+    public static GameObject MusicPlayerInstance
+    {
+        get { return musicPlayerInstance ?? (musicPlayerInstance = Instantiate(Resources.Load("MusicPlayer") as GameObject)); }
+    }
+
+
     // list to keep track of all enemies
     public List<GameObject> enemies = new List<GameObject>();
     public GameObject PlayerObject = null;
+    public GameObject MusicPlayer = null;
 
 
     // Pause input action
@@ -41,14 +50,18 @@ public class LevelManager : MonoBehaviour
         LevelManagerInstance.PlayerObject = PlayerInstance;
         LevelManagerInstance.PlayerObject.name = "Player";
 
+        LevelManagerInstance.MusicPlayer = MusicPlayerInstance;
+        LevelManagerInstance.SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume"));
+
         // enable the pause input action
         pauseAction.Enable();
         //pauseScene = SceneManager.GetSceneByBuildIndex(2);
 
 
-        // preserve the levelmanager and the player.
+        // preserve the levelmanager, player, and musicPlayer
         DontDestroyOnLoad(LevelManagerInstance.PlayerObject);
         DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(LevelManagerInstance.MusicPlayer);
         
 
         //subscribe to the active scene changed delegate
@@ -63,8 +76,6 @@ public class LevelManager : MonoBehaviour
         {
             DoPauseOrUnpause();
         }
-
-
 
         if (enemies.Count <= 0) {
             GoToNextLevel();
@@ -106,7 +117,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
     public void DoPause()
     {
         LevelManagerInstance.gameIsPaused = true;
@@ -125,6 +135,23 @@ public class LevelManager : MonoBehaviour
         LevelManagerInstance.PlayerObject.transform.position = Vector3.zero;
     }
     
+    public void SetMusicVolume(float volumeLevel)
+    {
+        // Mathf.Log10(volumeLevel) * 20
+        // Logarthmic sound courtesy of https://johnleonardfrench.com/the-right-way-to-make-a-volume-slider-in-unity-using-logarithmic-conversion/
+        
+        // make sure it's not infinity
+        if (Mathf.Log10(volumeLevel) * 20 < -80)
+        {
+            volumeLevel = -80;
+        }
+        else
+        {
+            volumeLevel = Mathf.Log10(volumeLevel) * 20;
+        }
+        LevelManagerInstance.MusicPlayer.GetComponent<MusicPlayer>().mixer.SetFloat("MusicVolume", volumeLevel);
+    }
+
     private void GetAllEnemies()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();

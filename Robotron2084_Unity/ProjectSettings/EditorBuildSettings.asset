@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 0bf31e511025add46b96301f1de72382
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 7bc5a38baefc2d242ab8faacbb776a7e
   - enabled: 1
@@ -14,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PauseMenu.unity
     guid: 58e4881068688ae4fbe86d8a9ab7e359
+  - enabled: 1
+    path: Assets/Scenes/HUD.unity
+    guid: fea14a8274363d3409754c27a832b738
+  - enabled: 1
+    path: Assets/Scenes/GameOverMenu.unity
+    guid: 388db76622c58944aa5f217bf225e922
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a99b56a366800324eac6be36af8ef2bf, type: 2}

@@ -23,7 +23,6 @@ public class BulletMovement : MonoBehaviour
     void Update()
     {
         rb.velocity = bulletVelocity;
-        Debug.Log(rb.velocity);
     }
 
     public void setInstantaneousPlayerVelocity(Vector3 vel)

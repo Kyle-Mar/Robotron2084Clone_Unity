@@ -6,7 +6,7 @@ public class Health : MonoBehaviour
 {
     [SerializeField] float health = 100f;
     [SerializeField] bool invincibilityFrames;
-    float maxHealth;
+    public float maxHealth;
     bool canTakeDamage;
     private Coroutine damageCooldownCoroutine;
     Death death;
@@ -24,7 +24,7 @@ public class Health : MonoBehaviour
         
     }
 
-    public void takeDamage(float damageValue)
+    public float takeDamage(float damageValue)
     {
         if(health > 0)
         {
@@ -35,15 +35,15 @@ public class Health : MonoBehaviour
             
             if (canTakeDamage)
             {
-                Debug.Log(this.gameObject.name);
-                Debug.Log(health);
                 health -= damageValue;
                 if (health <= 0)
                 {
                     death.death();
                 }
             }
+            return health;
         }
+        return -1;
     }
 
     public float getHealth()

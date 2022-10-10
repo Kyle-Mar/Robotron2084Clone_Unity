@@ -23,7 +23,11 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            health.takeDamage(10f);
+            float newHealth = health.takeDamage(10f);
+            if(newHealth != -1)
+            {
+                LevelManager.LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<HUDHealthBar>().SetHealthBarValue(newHealth, health.maxHealth);
+            }
         }
     }
 }

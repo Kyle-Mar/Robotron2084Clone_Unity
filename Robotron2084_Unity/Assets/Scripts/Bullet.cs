@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(trailRenderer.positionCount);
 
     }
 

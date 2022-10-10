@@ -7,7 +7,7 @@ public class PlayerDeath : Death
 
     public override void death()
     {
-        // Kill player
-        Debug.Log("dead");
+        // Kill 
+        LevelManager.LevelManagerInstance.LoadGameOverMenu();
     }
 }

@@ -34,6 +34,7 @@ public class LevelManager : MonoBehaviour
     public int enemyCount = 0;
     public GameObject PlayerObject = null;
     public GameObject PreviousPlayerObject = null;
+    public int PreviousScore = 0;
     public GameObject MusicPlayer = null;
     public GameObject HUDCanvasObject = null;
     private Coroutine changingLevels = null;
@@ -107,6 +108,7 @@ public class LevelManager : MonoBehaviour
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+        LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<ScoreText>().SetScore(LevelManagerInstance.PreviousScore);
         DoUnpause();
         enemyCount = 0;
         ResetPlayer();
@@ -195,18 +197,26 @@ public class LevelManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        DeinitalizeSingletons();
+    }
+
+    public void LoadVictoryMenu()
+    {
+        SceneManager.LoadScene("VictoryMenu", LoadSceneMode.Single);
+        DeinitalizeSingletons();
     }
 
     public void LoadGameOverMenu()
     {
         SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+        DeinitalizeSingletons();
     }
 
     public void StartGame()
     {
-        StartCoroutine(GoToNextLevel());
         InitializePlayer();
         InitializeHud();
+        StartCoroutine(GoToNextLevel());
     }
 
     public void RestartGame()
@@ -237,7 +247,6 @@ public class LevelManager : MonoBehaviour
     {
         AsyncOperation op;
         int nextScene = currentScene + 1;
-        Debug.Log(nextScene);
         if (nextScene > scenes.Count)
         {
             yield break;
@@ -246,6 +255,7 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             DeinitalizeSingletons();
+
             currentScene = nextScene;
         }
         else if (scenes[nextScene].path.Contains("Level"))
@@ -258,11 +268,12 @@ public class LevelManager : MonoBehaviour
                 yield return null;
             }
             changingLevels = null;
+            LevelManagerInstance.PreviousScore = LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<ScoreText>().GetScore();
+            Debug.Log("NEXT SCENE NUMBER " + nextScene + " CURRENT SCENE NUMBER " + currentScene);
             currentScene = nextScene;
-
         }
         else {
-            SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+            SceneManager.LoadScene("VictoryMenu", LoadSceneMode.Single);
             DeinitalizeSingletons();
             currentScene = scenes.Count;
         }

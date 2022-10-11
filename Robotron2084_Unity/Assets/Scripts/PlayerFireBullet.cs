@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerFireBullet : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] AudioClip BulletFireSound;
     GameObject firingPoint;
 
     void Start()
@@ -15,6 +16,7 @@ public class PlayerFireBullet : MonoBehaviour
     public void fireBullet(Quaternion rot, Vector3 playerVelocity)
     {
         GameObject bullet = Instantiate(bulletPrefab, firingPoint.transform.position, firingPoint.transform.rotation);
+        SFXHandler.SFXHandlerInstance.PlaySFX(BulletFireSound);
         bullet.transform.rotation = rot;
         BulletMovement bulletMovementScript = bullet.GetComponent<BulletMovement>();
         bulletMovementScript.setInstantaneousPlayerVelocity(playerVelocity);

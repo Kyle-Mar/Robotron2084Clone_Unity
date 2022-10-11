@@ -70,13 +70,11 @@ public class LevelManager : MonoBehaviour
     }
     public void Init()
     {
-        Debug.Log(LevelManagerInstance); 
         DontDestroyOnLoad(this.gameObject);
     }
 
     private void InitializePlayer()
     {
-        Debug.Log(PlayerInstance);
         LevelManagerInstance.PlayerObject = PlayerInstance;
         LevelManagerInstance.PlayerObject.name = "Player";
         DontDestroyOnLoad(LevelManagerInstance.PlayerObject);
@@ -85,7 +83,7 @@ public class LevelManager : MonoBehaviour
     private void InitializeMusic()
     {
         LevelManagerInstance.MusicPlayer = MusicPlayerInstance;
-        LevelManagerInstance.SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume"));
+        LevelManagerInstance.SetMixerGroupVolume("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
         LevelManagerInstance.MusicPlayer.GetComponent<MusicPlayer>().SetPitch(0.5f);
     }
 
@@ -157,11 +155,11 @@ public class LevelManager : MonoBehaviour
 
     }
     
-    public void SetMusicVolume(float volumeLevel)
+    public void SetMixerGroupVolume(string targetMixerGroup, float volumeLevel)
     {
         // Mathf.Log10(volumeLevel) * 20
         // Logarthmic sound courtesy of https://johnleonardfrench.com/the-right-way-to-make-a-volume-slider-in-unity-using-logarithmic-conversion/
-        
+
         // make sure it's not infinity
         if (Mathf.Log10(volumeLevel) * 20 < -80)
         {
@@ -171,7 +169,7 @@ public class LevelManager : MonoBehaviour
         {
             volumeLevel = Mathf.Log10(volumeLevel) * 20;
         }
-        LevelManagerInstance.MusicPlayer.GetComponent<MusicPlayer>().mixer.SetFloat("MusicVolume", volumeLevel);
+        LevelManagerInstance.MusicPlayer.GetComponent<MusicPlayer>().mixer.SetFloat(targetMixerGroup, volumeLevel);
     }
 
     private void GetAllEnemies()
@@ -181,7 +179,6 @@ public class LevelManager : MonoBehaviour
 
     public void AddToEnemyCount(GameObject enemy)
     {
-        Debug.Log(enemy.name);
         LevelManagerInstance.enemyCount += 1;
     }
 
@@ -260,7 +257,6 @@ public class LevelManager : MonoBehaviour
         }
         else if (scenes[nextScene].path.Contains("Level"))
         {
-            Debug.Log(scenes[nextScene].path);
             op = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
             LevelManagerInstance.PreviousPlayerObject = LevelManagerInstance.PlayerObject;
             while (!op.isDone)
@@ -269,7 +265,6 @@ public class LevelManager : MonoBehaviour
             }
             changingLevels = null;
             LevelManagerInstance.PreviousScore = LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<ScoreText>().GetScore();
-            Debug.Log("NEXT SCENE NUMBER " + nextScene + " CURRENT SCENE NUMBER " + currentScene);
             currentScene = nextScene;
         }
         else {

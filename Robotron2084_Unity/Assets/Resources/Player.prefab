@@ -1567,6 +1567,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 07d0181e-1190-4c40-95df-2e8f95363caa
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 820a1f03-c649-4778-812e-5f12e16affda
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -1628,6 +1632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 588386250862861922, guid: d4f9c622c0f390f46b0637e60ab97a97, type: 3}
+  BulletFireSound: {fileID: 8300000, guid: 1b7bdb21030e2834c8d2cbeaee7957a1, type: 3}
 --- !u!54 &7959833786890476753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1674,6 +1679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   invincibilityFrames: 1
+  maxHealth: 0
 --- !u!114 &1956527374534552946
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class VolumeSlider : MonoBehaviour
 {
     public Slider slider;
+    public string targetMixerParamString;
 
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("MusicVolume");
+        slider.value = PlayerPrefs.GetFloat(targetMixerParamString);
     }
     public void OnVolumeChanged()
     {
-        LevelManager.LevelManagerInstance.SetMusicVolume(slider.value);
-        PlayerPrefs.SetFloat("MusicVolume", slider.value);
+        LevelManager.LevelManagerInstance.SetMixerGroupVolume(targetMixerParamString, slider.value);
+        PlayerPrefs.SetFloat(targetMixerParamString, slider.value);
     }
 }

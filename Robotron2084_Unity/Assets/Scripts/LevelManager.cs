@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
@@ -38,7 +37,7 @@ public class LevelManager : MonoBehaviour
     public GameObject MusicPlayer = null;
     public GameObject HUDCanvasObject = null;
     private Coroutine changingLevels = null;
-    private List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>();
+    private List<string> scenes = new List<string>();
 
 
     // Pause input action
@@ -50,7 +49,12 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         levelManagerInstance = this;
-        scenes = EditorBuildSettings.scenes.ToList();
+        int numScenes = SceneManager.sceneCountInBuildSettings;
+        for(int i = 0; i < numScenes; i++)
+        {
+            scenes.Add(System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i)));
+        }
+        
         // enable the pause input action
         pauseAction.Enable();
         InitializeMusic();
@@ -248,14 +252,14 @@ public class LevelManager : MonoBehaviour
         {
             yield break;
         }
-        if (scenes[nextScene].path.Contains("MainMenu"))
+        if (scenes[nextScene].Contains("MainMenu"))
         {
             SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             DeinitalizeSingletons();
 
             currentScene = nextScene;
         }
-        else if (scenes[nextScene].path.Contains("Level"))
+        else if (scenes[nextScene].Contains("Level"))
         {
             op = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
             LevelManagerInstance.PreviousPlayerObject = LevelManagerInstance.PlayerObject;

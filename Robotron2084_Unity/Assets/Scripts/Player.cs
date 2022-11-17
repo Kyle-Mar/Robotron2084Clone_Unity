@@ -2,25 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Health))]
-public class Player : MonoBehaviour
+[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInputManager))]
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerDeath))]
+
+public class Player : Singleton<Player>
 {
 
 
     Health health;
-    void Awake()
+
+
+    protected override void OnAwake()
     {
+        health = GetComponent<Health>();
     }
 
     
     void Start()
     {
-        health = GetComponent<Health>();
+
     }
 
-    void OnCollisionStay(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
+        Debug.Log(collision.gameObject.name); 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             float newHealth = health.takeDamage(10f);

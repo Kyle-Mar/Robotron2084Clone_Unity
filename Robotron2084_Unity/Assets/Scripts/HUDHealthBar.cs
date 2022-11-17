@@ -9,7 +9,7 @@ public class HUDHealthBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Health playerHealthComponent = LevelManager.LevelManagerInstance.PlayerObject.GetComponent<Health>();
+        Health playerHealthComponent = Player.Instance.gameObject.GetComponent<Health>();
         healthBar.value = playerHealthComponent.getHealth() / playerHealthComponent.maxHealth;
     }
 

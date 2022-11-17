@@ -1424,8 +1424,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7959833786811775845}
   - component: {fileID: 7959833786811775841}
-  - component: {fileID: 736834224469407724}
   - component: {fileID: 1413177964180075499}
+  - component: {fileID: 736834224469407724}
   - component: {fileID: 7959833786890476753}
   - component: {fileID: 7959833786811775847}
   - component: {fileID: 1851110289436344100}
@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 7959833786811775832}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1576,6 +1576,20 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 1142768073565924783}
+--- !u!114 &1413177964180075499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7959833786811775842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d0aab685c9372f4fa0cc98e7a7e346b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 588386250862861922, guid: d4f9c622c0f390f46b0637e60ab97a97, type: 3}
+  BulletFireSound: {fileID: 8300000, guid: 1b7bdb21030e2834c8d2cbeaee7957a1, type: 3}
 --- !u!114 &736834224469407724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,20 +1633,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &1413177964180075499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7959833786811775842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0aab685c9372f4fa0cc98e7a7e346b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 588386250862861922, guid: d4f9c622c0f390f46b0637e60ab97a97, type: 3}
-  BulletFireSound: {fileID: 8300000, guid: 1b7bdb21030e2834c8d2cbeaee7957a1, type: 3}
 --- !u!54 &7959833786890476753
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1692,6 +1692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e14b727a67e6894c934724e54f0580f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
 --- !u!114 &7959833786811775832
 MonoBehaviour:
   m_ObjectHideFlags: 0

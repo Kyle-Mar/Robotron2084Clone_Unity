@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         meshObject = transform.Find("EnemyMesh").gameObject;
         NewRandomDirection();
         StartCoroutine(ChooseNewDirection(5f));

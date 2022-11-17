@@ -5,20 +5,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-public class LevelManager : MonoBehaviour
+
+public class LevelManager : Singleton<LevelManager>
 {
     private static LevelManager levelManagerInstance;
+
 
     public static LevelManager LevelManagerInstance
     {
         get { return levelManagerInstance ?? (levelManagerInstance = new GameObject("LevelManager").AddComponent<LevelManager>()); }
-    }
-
-    private static GameObject playerInstance;
-
-    public static GameObject PlayerInstance
-    {
-        get { return playerInstance ?? (playerInstance = Instantiate(Resources.Load("Player") as GameObject)); }
     }
 
     private static GameObject musicPlayerInstance;
@@ -45,8 +40,8 @@ public class LevelManager : MonoBehaviour
     InputAction pauseAction = new InputAction("pause", binding: "<Keyboard>/escape");
     Scene pauseScene;
 
-    int currentScene = 0;
-    void Awake()
+    int currentSceneNumber = 0;
+    protected override void OnAwake()
     {
         levelManagerInstance = this;
         int numScenes = SceneManager.sceneCountInBuildSettings;
@@ -57,6 +52,16 @@ public class LevelManager : MonoBehaviour
         
         // enable the pause input action
         pauseAction.Enable();
+
+        //Get active scene and set the scene number based off of the position in the scene list.
+        Scene currentScene = SceneManager.GetActiveScene();
+        currentSceneNumber = findSceneNumberBySceneNameInScenesList(currentScene.name, ref scenes);
+
+        if (scenes[currentSceneNumber].Contains("Level"))
+        {
+            InitializePlayer();
+            InitializeHud();
+        }
         InitializeMusic();
         
         //subscribe to the active scene changed delegate
@@ -67,6 +72,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(enemyCount);
         if (pauseAction.triggered)
         {
             DoPauseOrUnpause();
@@ -79,9 +85,9 @@ public class LevelManager : MonoBehaviour
 
     private void InitializePlayer()
     {
-        LevelManagerInstance.PlayerObject = PlayerInstance;
-        LevelManagerInstance.PlayerObject.name = "Player";
-        DontDestroyOnLoad(LevelManagerInstance.PlayerObject);
+        LevelManagerInstance.PlayerObject = Player.Instance.gameObject;
+        //LevelManagerInstance.PlayerObject.name = "Player";
+        //DontDestroyOnLoad(LevelManagerInstance.PlayerObject);
     }
 
     private void InitializeMusic()
@@ -89,19 +95,19 @@ public class LevelManager : MonoBehaviour
         LevelManagerInstance.MusicPlayer = MusicPlayerInstance;
         LevelManagerInstance.SetMixerGroupVolume("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
         LevelManagerInstance.MusicPlayer.GetComponent<MusicPlayer>().SetPitch(0.5f);
+        DontDestroyOnLoad(LevelManagerInstance.MusicPlayer);
     }
 
     private void InitializeHud()
     {
         SceneManager.LoadSceneAsync("HUD", LoadSceneMode.Additive);
         StartCoroutine(WaitForHud());
-        DontDestroyOnLoad(LevelManagerInstance.MusicPlayer);
     }
 
     private void DeinitalizeSingletons()
     {
         Destroy(LevelManagerInstance.PlayerObject);
-        playerInstance = null;
+        //Player.Instance = null;
         Destroy(LevelManagerInstance.HUDCanvasObject);
 
     }
@@ -151,11 +157,11 @@ public class LevelManager : MonoBehaviour
     
     public void ResetPlayer()
     {
-        if(!LevelManagerInstance.PreviousPlayerObject == null)
+        if(!LevelManager.Instance.PreviousPlayerObject == null)
         {
-            LevelManagerInstance.PlayerObject = LevelManagerInstance.PreviousPlayerObject;
+            LevelManager.Instance.PlayerObject = LevelManager.Instance.PreviousPlayerObject;
         }
-        LevelManagerInstance.PlayerObject.transform.position = Vector3.zero;
+        LevelManager.Instance.PlayerObject.transform.position = Vector3.zero;
 
     }
     
@@ -210,6 +216,7 @@ public class LevelManager : MonoBehaviour
     public void LoadGameOverMenu()
     {
         SceneManager.LoadScene("GameOverMenu", LoadSceneMode.Single);
+        enemyCount = 0;
         DeinitalizeSingletons();
     }
 
@@ -222,9 +229,24 @@ public class LevelManager : MonoBehaviour
 
     public void RestartGame()
     {
-        currentScene = -1;
+        currentSceneNumber = -1;
         StartCoroutine(GoToNextLevel());
     }
+
+    private int findSceneNumberBySceneNameInScenesList(string sceneName, ref List<string> scenes)
+    {
+        int i = 0;
+        foreach (string scene in scenes)
+        {
+            if (scene.Contains(sceneName))
+            {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
 
     IEnumerator WaitForHud()
     {
@@ -247,7 +269,7 @@ public class LevelManager : MonoBehaviour
     IEnumerator GoToNextLevel()
     {
         AsyncOperation op;
-        int nextScene = currentScene + 1;
+        int nextScene = currentSceneNumber + 1;
         if (nextScene > scenes.Count)
         {
             yield break;
@@ -257,7 +279,7 @@ public class LevelManager : MonoBehaviour
             SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             DeinitalizeSingletons();
 
-            currentScene = nextScene;
+            currentSceneNumber = nextScene;
         }
         else if (scenes[nextScene].Contains("Level"))
         {
@@ -269,12 +291,12 @@ public class LevelManager : MonoBehaviour
             }
             changingLevels = null;
             LevelManagerInstance.PreviousScore = LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<ScoreText>().GetScore();
-            currentScene = nextScene;
+            currentSceneNumber = nextScene;
         }
         else {
             SceneManager.LoadScene("VictoryMenu", LoadSceneMode.Single);
             DeinitalizeSingletons();
-            currentScene = scenes.Count;
+            currentSceneNumber = scenes.Count;
         }
     }
 }

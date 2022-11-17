@@ -340,13 +340,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3371453652771014732}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0.86149627, w: -0.507764}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3150213580213446579}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 241.03}
 --- !u!1 &3446829139146099710
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,6 +1554,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 07d0181e-1190-4c40-95df-2e8f95363caa
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 820a1f03-c649-4778-812e-5f12e16affda
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -1615,6 +1619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 588386250862861922, guid: d4f9c622c0f390f46b0637e60ab97a97, type: 3}
+  BulletFireSound: {fileID: 0}
 --- !u!54 &7950642055467964598
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1661,6 +1666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   invincibilityFrames: 1
+  maxHealth: 0
 --- !u!114 &1947704804218562837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1673,6 +1679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e14b727a67e6894c934724e54f0580f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
 --- !u!114 &7950642055269596991
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -80,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
         fireInput = context.ReadValue<float>();
         if (fireInput > .5f && context.performed)
         {
-            playerFireBullet.fireBullet(meshObject.transform.rotation, rb.velocity);
+            playerFireBullet.fireBullet(meshObject.transform.up, rb.velocity);
+            Debug.Log(meshObject.transform.forward);
         }
 
     }

@@ -31,6 +31,20 @@ public class SFXHandler : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         GameObject SFXObject = new GameObject("SoundEffect");
+        Play(SFXObject, clip);
+    }
+
+    //spatial override
+    public void PlaySFX(AudioClip clip, Vector3 position)
+    {
+        GameObject SFXObject = new GameObject("SoundEffect");
+        SFXObject.transform.position = position;
+        Play(SFXObject, clip);
+
+    }
+
+    private void Play(GameObject SFXObject, AudioClip clip)
+    {
         AudioSource source = SFXObject.AddComponent<AudioSource>();
         source.outputAudioMixerGroup = mixerGroup;
         source.clip = clip;

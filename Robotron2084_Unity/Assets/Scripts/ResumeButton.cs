@@ -6,6 +6,6 @@ public class ResumeButton : MonoBehaviour
 {
     public void OnClick()
     {
-        LevelManager.LevelManagerInstance.DoUnpause();
+        LevelManager.Instance.DoUnpause();
     }
 }

@@ -37,7 +37,7 @@ public class Player : Singleton<Player>
             float newHealth = health.takeDamage(10f);
             if(newHealth != -1)
             {
-                LevelManager.LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<HUDHealthBar>().SetHealthBarValue(newHealth, health.maxHealth);
+                LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<HUDHealthBar>().SetHealthBarValue(newHealth, health.maxHealth);
             }
         }
     }

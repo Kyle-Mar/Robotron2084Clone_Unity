@@ -37,7 +37,7 @@ public class Bullet : MonoBehaviour
         bulletMovement.bulletVelocity = Vector3.zero;
         // disable the collider
         col.enabled = false;
-        SFXHandler.SFXHandlerInstance.PlaySFX(explodeClip, transform.position);
+        SFXHandler.Instance.PlaySFX(explodeClip, transform.position);
         // wait to delete the trail for the time that it will take for the trail to disappear.
         StartCoroutine(WaitForTrailThenDelete(trailRenderer.time));
 

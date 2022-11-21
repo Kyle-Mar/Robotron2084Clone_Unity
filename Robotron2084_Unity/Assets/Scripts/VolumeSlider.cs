@@ -14,7 +14,7 @@ public class VolumeSlider : MonoBehaviour
     }
     public void OnVolumeChanged()
     {
-        LevelManager.LevelManagerInstance.SetMixerGroupVolume(targetMixerParamString, slider.value);
+        LevelManager.Instance.SetMixerGroupVolume(targetMixerParamString, slider.value);
         PlayerPrefs.SetFloat(targetMixerParamString, slider.value);
     }
 }

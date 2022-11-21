@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     Health health;
     void Start()
     {
-        LevelManager.LevelManagerInstance.AddToEnemyCount(this.gameObject);
+        LevelManager.Instance.AddToEnemyCount(this.gameObject);
         health = GetComponent<Health>();
     }
     void OnCollisionEnter(Collision collision)

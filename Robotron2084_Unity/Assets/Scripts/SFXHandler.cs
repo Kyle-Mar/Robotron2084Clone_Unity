@@ -3,23 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class SFXHandler : MonoBehaviour
+public class SFXHandler : Singleton<SFXHandler>
 {
     public AudioMixer mixer;
     public  AudioMixerGroup mixerGroup;
 
-    private static SFXHandler sfxHandler;
-
-    public static SFXHandler SFXHandlerInstance
-    {
-        get { return sfxHandler ?? (sfxHandler = new GameObject("SFXHandler").AddComponent<SFXHandler>()); }
-    }
     void Start()
     {
         mixer = Resources.Load<AudioMixer>("Mixer");
         mixerGroup = mixer.FindMatchingGroups("SoundEffects")[0];
-        sfxHandler = this;
-        DontDestroyOnLoad(SFXHandlerInstance.transform.gameObject);
     }
 
     // Update is called once per frame

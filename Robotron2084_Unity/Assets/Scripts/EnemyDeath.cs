@@ -7,9 +7,9 @@ public class EnemyDeath : Death
     public override void death(){
         if(this != null)
         {
-            LevelManager.LevelManagerInstance.RemoveFromEnemyCount();
+            LevelManager.Instance.RemoveFromEnemyCount();
             Destroy(this.gameObject);
-            LevelManager.LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<ScoreText>().AddScore(10);
+            LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<ScoreText>().AddScore(10);
             Instantiate(Resources.Load("EnemyParticleEmitter"), transform.position, Quaternion.identity);
         }
     }

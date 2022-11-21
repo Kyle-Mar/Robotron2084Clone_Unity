@@ -8,13 +8,6 @@ using UnityEngine.InputSystem;
 
 public class LevelManager : Singleton<LevelManager>
 {
-    private static LevelManager levelManagerInstance;
-
-
-    public static LevelManager LevelManagerInstance
-    {
-        get { return levelManagerInstance ?? (levelManagerInstance = new GameObject("LevelManager").AddComponent<LevelManager>()); }
-    }
 
     private static GameObject musicPlayerInstance;
 
@@ -43,7 +36,6 @@ public class LevelManager : Singleton<LevelManager>
     int currentSceneNumber = 0;
     protected override void OnAwake()
     {
-        levelManagerInstance = this;
         int numScenes = SceneManager.sceneCountInBuildSettings;
         for(int i = 0; i < numScenes; i++)
         {
@@ -85,17 +77,17 @@ public class LevelManager : Singleton<LevelManager>
 
     private void InitializePlayer()
     {
-        LevelManagerInstance.PlayerObject = Player.Instance.gameObject;
+        LevelManager.Instance.PlayerObject = Player.Instance.gameObject;
         //LevelManagerInstance.PlayerObject.name = "Player";
         //DontDestroyOnLoad(LevelManagerInstance.PlayerObject);
     }
 
     private void InitializeMusic()
     {
-        LevelManagerInstance.MusicPlayer = MusicPlayerInstance;
-        LevelManagerInstance.SetMixerGroupVolume("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
-        LevelManagerInstance.MusicPlayer.GetComponent<MusicPlayer>().SetPitch(0.5f);
-        DontDestroyOnLoad(LevelManagerInstance.MusicPlayer);
+        LevelManager.Instance.MusicPlayer = MusicPlayerInstance;
+        LevelManager.Instance.SetMixerGroupVolume("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
+        LevelManager.Instance.MusicPlayer.GetComponent<MusicPlayer>().SetPitch(0.5f);
+        DontDestroyOnLoad(LevelManager.Instance.MusicPlayer);
     }
 
     private void InitializeHud()
@@ -106,9 +98,9 @@ public class LevelManager : Singleton<LevelManager>
 
     private void DeinitalizeSingletons()
     {
-        Destroy(LevelManagerInstance.PlayerObject);
+        Destroy(LevelManager.Instance.PlayerObject);
         //Player.Instance = null;
-        Destroy(LevelManagerInstance.HUDCanvasObject);
+        Destroy(LevelManager.Instance.HUDCanvasObject);
 
     }
 
@@ -116,7 +108,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
-        LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<ScoreText>().SetScore(LevelManagerInstance.PreviousScore);
+        LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<ScoreText>().SetScore(LevelManager.Instance.PreviousScore);
         DoUnpause();
         enemyCount = 0;
         ResetPlayer();
@@ -131,8 +123,8 @@ public class LevelManager : Singleton<LevelManager>
 
     public void DoPauseOrUnpause()
     {
-        LevelManagerInstance.gameIsPaused = !LevelManagerInstance.gameIsPaused;
-        if (LevelManagerInstance.gameIsPaused)
+        LevelManager.Instance.gameIsPaused = !LevelManager.Instance.gameIsPaused;
+        if (LevelManager.Instance.gameIsPaused)
         {
             DoPause();
         }
@@ -144,13 +136,13 @@ public class LevelManager : Singleton<LevelManager>
 
     public void DoPause()
     {
-        LevelManagerInstance.gameIsPaused = true;
+        LevelManager.Instance.gameIsPaused = true;
         SceneManager.LoadSceneAsync("PauseMenu", LoadSceneMode.Additive);
         Time.timeScale = 0f;
     }
 
     public void DoUnpause() {
-        LevelManagerInstance.gameIsPaused = false;
+        LevelManager.Instance.gameIsPaused = false;
         SceneManager.UnloadScene("PauseMenu");
         Time.timeScale = 1f;
     }
@@ -179,7 +171,7 @@ public class LevelManager : Singleton<LevelManager>
         {
             volumeLevel = Mathf.Log10(volumeLevel) * 20;
         }
-        LevelManagerInstance.MusicPlayer.GetComponent<MusicPlayer>().mixer.SetFloat(targetMixerGroup, volumeLevel);
+        LevelManager.Instance.MusicPlayer.GetComponent<MusicPlayer>().mixer.SetFloat(targetMixerGroup, volumeLevel);
     }
 
     private void GetAllEnemies()
@@ -189,12 +181,12 @@ public class LevelManager : Singleton<LevelManager>
 
     public void AddToEnemyCount(GameObject enemy)
     {
-        LevelManagerInstance.enemyCount += 1;
+        LevelManager.Instance.enemyCount += 1;
     }
 
     public void RemoveFromEnemyCount()
     {
-        LevelManagerInstance.enemyCount -= 1;
+        LevelManager.Instance.enemyCount -= 1;
         if(enemyCount <= 0 && changingLevels == null)
         {
             changingLevels = StartCoroutine(GoToNextLevel());
@@ -258,7 +250,7 @@ public class LevelManager : Singleton<LevelManager>
             yield return null;
         }
         
-        LevelManagerInstance.HUDCanvasObject = GameObject.Find("HUDCanvas");
+        LevelManager.Instance.HUDCanvasObject = GameObject.Find("HUDCanvas");
         Canvas canvas = GameObject.Find("HUDCanvas").GetComponent<Canvas>();
         Camera camera = GameObject.Find("Camera").GetComponent<Camera>();
         canvas.worldCamera = camera;
@@ -284,13 +276,13 @@ public class LevelManager : Singleton<LevelManager>
         else if (scenes[nextScene].Contains("Level"))
         {
             op = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
-            LevelManagerInstance.PreviousPlayerObject = LevelManagerInstance.PlayerObject;
+            LevelManager.Instance.PreviousPlayerObject = LevelManager.Instance.PlayerObject;
             while (!op.isDone)
             {
                 yield return null;
             }
             changingLevels = null;
-            LevelManagerInstance.PreviousScore = LevelManagerInstance.HUDCanvasObject.GetComponentInChildren<ScoreText>().GetScore();
+            LevelManager.Instance.PreviousScore = LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<ScoreText>().GetScore();
             currentSceneNumber = nextScene;
         }
         else {

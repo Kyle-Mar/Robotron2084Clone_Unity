@@ -8,6 +8,6 @@ public class PlayerDeath : Death
     public override void death()
     {
         // Kill 
-        LevelManager.LevelManagerInstance.LoadGameOverMenu();
+        LevelManager.Instance.LoadGameOverMenu();
     }
 }

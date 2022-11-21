@@ -15,7 +15,9 @@ public class BulletMovement : MonoBehaviour
     void Start()
     {
         initDirection = transform.forward;
+        Debug.Log(initDirection);
         rb = GetComponent<Rigidbody>();
+        transform.Rotate(new Vector3(90, 0, 0));
         bulletVelocity = (initDirection) * (speed + playerVelocity.magnitude);
     }
 

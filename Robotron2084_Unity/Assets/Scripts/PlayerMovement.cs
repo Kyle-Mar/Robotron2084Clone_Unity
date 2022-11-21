@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Look(InputAction.CallbackContext context)
     {
-        if (LevelManager.LevelManagerInstance.gameIsPaused)
+        if (LevelManager.Instance.gameIsPaused)
         {
             return;
         }

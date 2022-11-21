@@ -9,6 +9,6 @@ public class StartButton : MonoBehaviour
     }
     public void StartGame()
     {
-        LevelManager.LevelManagerInstance.StartGame();
+        LevelManager.Instance.StartGame();
     }
 }

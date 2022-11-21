@@ -11,6 +11,6 @@ public class StartOverButton : MonoBehaviour
 
     public void StartOver()
     {
-        LevelManager.LevelManagerInstance.RestartGame();
+        LevelManager.Instance.RestartGame();
     }
 }

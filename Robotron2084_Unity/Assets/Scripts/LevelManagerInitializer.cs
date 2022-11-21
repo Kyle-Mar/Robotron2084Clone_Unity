@@ -6,6 +6,6 @@ public class LevelManagerInitializer : MonoBehaviour
 {
     void Awake()
     {
-        LevelManager.LevelManagerInstance.Init();
+        LevelManager.Instance.Init();
     }
 }

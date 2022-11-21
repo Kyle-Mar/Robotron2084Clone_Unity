@@ -6,6 +6,6 @@ public class RestartButton : MonoBehaviour
 {
     public void OnClick()
     {
-        LevelManager.LevelManagerInstance.ReloadScene();
+        LevelManager.Instance.ReloadScene();
     }
 }

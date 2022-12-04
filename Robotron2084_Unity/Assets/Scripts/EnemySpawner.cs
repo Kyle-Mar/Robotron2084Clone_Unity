@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemySpawner : MonoBehaviour
 {
 	public float distanceFromSpawner = 10;
@@ -11,9 +12,12 @@ public class EnemySpawner : MonoBehaviour
 	[SerializeField] float currentAngle;
 	[SerializeField] int currentWave = 0;
 	float deltaAngle;
+	private int outstandingEnemySpawns;
+	Timer waveTimer;
 
 	// Enemy Prefab GameObject
 	GameObject Enemy;
+	GameObject ParticleEffect;
 	Death death;
 
     // Start is called before the first frame update
@@ -21,14 +25,21 @@ public class EnemySpawner : MonoBehaviour
     {
 		death = GetComponent<Death>();
 		Enemy = Resources.Load<GameObject>("Enemy");
-		StartCoroutine(WaveTimer(timeBetweenWaves));
+		ParticleEffect = Resources.Load<GameObject>("EnemySpawningParticleEmitter");
+
+
+		deltaAngle = 360 / enemiesPerWave;
+		SpawnWave();
+		
+		waveTimer = gameObject.AddComponent<Timer>() as Timer;
+		waveTimer.SetTimer(timeBetweenWaves, () => { SpawnWave(); }, true);
     }
 
     // Update is called once per frame
     void Update()
     {
-		deltaAngle = 360 / enemiesPerWave;
-		if (currentWave >= numWaves)
+		
+		if (currentWave >= numWaves && outstandingEnemySpawns <= 0)
 		{
 			death.death();
 		}
@@ -46,11 +57,22 @@ public class EnemySpawner : MonoBehaviour
 		Vector3 currentAngleVector = Vector3.forward;
 		currentAngleVector = Quaternion.Euler(0, currentAngle , 0) * currentAngleVector * distanceFromSpawner;
 		Debug.DrawRay(transform.position, currentAngleVector, Color.yellow, .5f);
-
 		Vector3 spawnPosition = transform.position + currentAngleVector;
 		spawnPosition.y = 0;
-		Instantiate(Enemy, spawnPosition, Quaternion.identity);
+
+		Instantiate( ParticleEffect, spawnPosition, Quaternion.identity);
+		
+		Timer particleEffectTimer = gameObject.AddComponent<Timer>() as Timer;
+		particleEffectTimer.SetTimer(1.0f, () => { SpawnEnemyCallback(spawnPosition); }, false);
+		outstandingEnemySpawns++;
     }
+
+	public void SpawnEnemyCallback(Vector3 spawnPosition)
+    {
+		Instantiate(Enemy, spawnPosition, Quaternion.identity);
+		outstandingEnemySpawns--;
+    }
+
 
 	void SpawnWave()
     {
@@ -59,16 +81,5 @@ public class EnemySpawner : MonoBehaviour
 			SpawnEnemy();
         }
 		currentWave += 1;
-
 	}
-
-
-	IEnumerator WaveTimer (float time)
-    {
-        while (true)
-        {
-			yield return new WaitForSeconds(time);
-			SpawnWave();
-        }
-    }
 }

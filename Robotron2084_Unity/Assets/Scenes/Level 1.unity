@@ -459,6 +459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Geo
       objectReference: {fileID: 0}
+    - target: {fileID: 1669026114300777773, guid: 21105a3a145e18341b2df917944745b5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1669026114300777775, guid: 21105a3a145e18341b2df917944745b5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

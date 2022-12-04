@@ -31,7 +31,7 @@ public class Player : Singleton<Player>
 
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log(collision.gameObject.name); 
+        //Debug.Log(collision.gameObject.name); 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             float newHealth = health.takeDamage(10f);

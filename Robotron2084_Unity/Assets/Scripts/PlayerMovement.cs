@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
         playerFireBullet = GetComponent<PlayerFireBullet>();
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+
         meshObject = GameObject.Find("PlayerMesh");
     }
 
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //transform.Translate(new Vector3(moveInput.x, 0, moveInput.y) * Time.deltaTime * speed);
         rb.velocity = (new Vector3(moveInput.x, 0, moveInput.y) * speed);
+        
         isWalking = rb.velocity.magnitude == 0 ? false : true;
         
     }

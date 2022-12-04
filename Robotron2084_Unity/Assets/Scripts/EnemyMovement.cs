@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : Enemy
 {
     [SerializeField] GameObject player;
     GameObject meshObject;
@@ -54,6 +54,11 @@ public class EnemyMovement : MonoBehaviour
         if(collision.gameObject.name == player.name)
         {
             isCollidingWithPlayer = true;
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle") && !isMovingTowardsPlayer){
+            currentRandomDirection *= -1;
+            meshObject.transform.LookAt(currentRandomDirection);
         }
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class SFXHandler : Singleton<SFXHandler>
 {
     public AudioMixer mixer;
-    public  AudioMixerGroup mixerGroup;
+    public AudioMixerGroup mixerGroup;
 
     void Start()
     {
@@ -42,12 +42,8 @@ public class SFXHandler : Singleton<SFXHandler>
         source.clip = clip;
         source.volume = PlayerPrefs.GetFloat("EffectsVolume");
         source.Play();
-        StartCoroutine(DestroyAfterClipLength(clip.length, SFXObject));
-    }
-
-    IEnumerator DestroyAfterClipLength(float length, GameObject SFXObject)
-    {
-        yield return new WaitForSeconds(length);
-        Destroy(SFXObject);
+        //StartCoroutine(DestroyAfterClipLength(clip.length, SFXObject));
+        Timer clipTimer = SFXObject.AddComponent<Timer>() as Timer;
+        clipTimer.SetTimer(clip.length, () => { Destroy(SFXObject); }, false);
     }
 }

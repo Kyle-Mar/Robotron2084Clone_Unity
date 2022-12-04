@@ -64,7 +64,7 @@ public class LevelManager : Singleton<LevelManager>
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(enemyCount);
+        //Debug.Log(enemyCount);
         if (pauseAction.triggered)
         {
             DoPauseOrUnpause();

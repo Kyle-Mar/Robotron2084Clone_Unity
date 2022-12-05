@@ -9,8 +9,9 @@ public class Timer : MonoBehaviour
 
     private System.Action timerCallback;
     private float maxTimer;
-    private float timer;
+    public float timer;
     private bool looping;
+    public bool active { get; private set; }
 
 
     public void SetTimer(float timer, System.Action timerCallback, bool looping)
@@ -19,10 +20,22 @@ public class Timer : MonoBehaviour
         this.timer = timer;
         this.timerCallback = timerCallback;
         this.looping = looping;
+        this.active = true;
     }
+
+    public void SetActive(bool activeNotActive)
+    {
+        active = activeNotActive;
+    }
+
+    
 
     private void Update()
     {
+        if (!active)
+        {
+            return;
+        }
         if (timer > 0f)
         {
             timer -= Time.deltaTime;

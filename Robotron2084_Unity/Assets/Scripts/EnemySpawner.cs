@@ -15,16 +15,27 @@ public class EnemySpawner : MonoBehaviour
 	private int outstandingEnemySpawns;
 	Timer waveTimer;
 
+
+	enum Enemies
+    {
+		WALKING,
+		SHOOTING,
+		EXPLODING
+	}
+
 	// Enemy Prefab GameObject
-	GameObject Enemy;
+	GameObject WalkingEnemy;
+	GameObject ShootingEnemy;
 	GameObject ParticleEffect;
 	Death death;
 
     // Start is called before the first frame update
     void Start()
     {
+
 		death = GetComponent<Death>();
-		Enemy = Resources.Load<GameObject>("Enemy");
+		WalkingEnemy = Resources.Load<GameObject>("WalkingEnemy");
+		ShootingEnemy = Resources.Load<GameObject>("ShootingEnemy");
 		ParticleEffect = Resources.Load<GameObject>("EnemySpawningParticleEmitter");
 
 
@@ -69,7 +80,21 @@ public class EnemySpawner : MonoBehaviour
 
 	public void SpawnEnemyCallback(Vector3 spawnPosition)
     {
-		Instantiate(Enemy, spawnPosition, Quaternion.identity);
+		int rand = Random.Range(0, 3);
+        switch (rand)
+        {
+			case 0:
+				Instantiate(WalkingEnemy, spawnPosition, Quaternion.identity);
+				break;
+			case 1:
+				Instantiate(ShootingEnemy, spawnPosition, Quaternion.identity);
+				break;
+			case 2:
+				Instantiate(WalkingEnemy, spawnPosition, Quaternion.identity);
+				break;
+			default:
+				break;
+        }
 		outstandingEnemySpawns--;
     }
 

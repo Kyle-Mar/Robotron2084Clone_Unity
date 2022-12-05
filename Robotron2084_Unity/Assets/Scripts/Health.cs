@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
         {
             if (invincibilityFrames && damageCooldownCoroutine == null)
             {
-                damageCooldownCoroutine = StartCoroutine(DamageCooldown(3f));
+                damageCooldownCoroutine = StartCoroutine(DamageCooldown(1f));
             }
             
             if (canTakeDamage)

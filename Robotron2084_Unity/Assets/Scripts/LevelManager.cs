@@ -36,6 +36,7 @@ public class LevelManager : Singleton<LevelManager>
     int currentSceneNumber = 0;
     protected override void OnAwake()
     {
+
         int numScenes = SceneManager.sceneCountInBuildSettings;
         for(int i = 0; i < numScenes; i++)
         {
@@ -49,11 +50,6 @@ public class LevelManager : Singleton<LevelManager>
         Scene currentScene = SceneManager.GetActiveScene();
         currentSceneNumber = findSceneNumberBySceneNameInScenesList(currentScene.name, ref scenes);
 
-        if (scenes[currentSceneNumber].Contains("Level"))
-        {
-            InitializePlayer();
-            InitializeHud();
-        }
         InitializeMusic();
         
         //subscribe to the active scene changed delegate
@@ -75,13 +71,6 @@ public class LevelManager : Singleton<LevelManager>
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void InitializePlayer()
-    {
-        LevelManager.Instance.PlayerObject = Player.Instance.gameObject;
-        //LevelManagerInstance.PlayerObject.name = "Player";
-        //DontDestroyOnLoad(LevelManagerInstance.PlayerObject);
-    }
-
     private void InitializeMusic()
     {
         LevelManager.Instance.MusicPlayer = MusicPlayerInstance;
@@ -92,16 +81,18 @@ public class LevelManager : Singleton<LevelManager>
 
     private void InitializeHud()
     {
+        Debug.Log(SceneManager.GetSceneByName("HUD").isLoaded);
+        if (SceneManager.GetSceneByName("HUD").isLoaded){
+            return;
+        }
         SceneManager.LoadSceneAsync("HUD", LoadSceneMode.Additive);
         StartCoroutine(WaitForHud());
     }
 
     private void DeinitalizeSingletons()
     {
-        Destroy(LevelManager.Instance.PlayerObject);
-        //Player.Instance = null;
+        Destroy(PlayerObject);
         Destroy(LevelManager.Instance.HUDCanvasObject);
-
     }
 
     public void ReloadScene()
@@ -116,8 +107,16 @@ public class LevelManager : Singleton<LevelManager>
 
     private void ActiveSceneChanged(Scene current, Scene next)
     {
+        currentSceneNumber = next.buildIndex;
         if (next.name.Contains("Level")){
-            GetAllEnemies();
+            if (PlayerObject){
+                PlayerObject.transform.position = Vector3.zero;
+            }
+            else{
+                PlayerObject = Instantiate(Resources.Load<GameObject>("Player"), Vector3.zero, Quaternion.identity);
+                DontDestroyOnLoad(PlayerObject);
+            }
+            InitializeHud();
         }
     }
 
@@ -176,7 +175,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void GetAllEnemies()
     {
-        //LevelManagerInstance.enemyCount = GameObject.FindGameObjectsWithTag("Enemy").ToList().Count;
+        LevelManager.Instance.enemyCount = GameObject.FindGameObjectsWithTag("Enemy").ToList().Count;
     }
 
     public void AddToEnemyCount(GameObject enemy)
@@ -214,14 +213,6 @@ public class LevelManager : Singleton<LevelManager>
 
     public void StartGame()
     {
-        InitializePlayer();
-        InitializeHud();
-        StartCoroutine(GoToNextLevel());
-    }
-
-    public void RestartGame()
-    {
-        currentSceneNumber = -1;
         StartCoroutine(GoToNextLevel());
     }
 
@@ -240,6 +231,8 @@ public class LevelManager : Singleton<LevelManager>
     }
 
 
+
+
     IEnumerator WaitForHud()
     {
 
@@ -251,11 +244,11 @@ public class LevelManager : Singleton<LevelManager>
         }
         
         LevelManager.Instance.HUDCanvasObject = GameObject.Find("HUDCanvas");
+        Debug.Log(HUDCanvasObject);
         Canvas canvas = GameObject.Find("HUDCanvas").GetComponent<Canvas>();
         Camera camera = GameObject.Find("Camera").GetComponent<Camera>();
         canvas.worldCamera = camera;
-        DontDestroyOnLoad(canvas.transform.gameObject);  
-      
+        LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<ScoreText>().SetScore(LevelManager.Instance.PreviousScore);
     }
 
     IEnumerator GoToNextLevel()
@@ -270,8 +263,6 @@ public class LevelManager : Singleton<LevelManager>
         {
             SceneManager.LoadScene(nextScene, LoadSceneMode.Single);
             DeinitalizeSingletons();
-
-            currentSceneNumber = nextScene;
         }
         else if (scenes[nextScene].Contains("Level"))
         {
@@ -283,12 +274,10 @@ public class LevelManager : Singleton<LevelManager>
             }
             changingLevels = null;
             LevelManager.Instance.PreviousScore = LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<ScoreText>().GetScore();
-            currentSceneNumber = nextScene;
         }
         else {
             SceneManager.LoadScene("VictoryMenu", LoadSceneMode.Single);
             DeinitalizeSingletons();
-            currentSceneNumber = scenes.Count;
         }
     }
 }

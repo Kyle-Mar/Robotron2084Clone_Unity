@@ -94,10 +94,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588386250862861922}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: -0.56, y: 1, z: 0.38}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3192264563666386721
 Rigidbody:
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explodeClip: {fileID: 8300000, guid: 33c4f557edb98a4469c4a762adb4c6e6, type: 3}
+  owner: {fileID: 0}
 --- !u!96 &7597278460058836708
 TrailRenderer:
   serializedVersion: 2

@@ -9,7 +9,7 @@ public abstract class Singleton<T> : Singleton where T: MonoBehaviour
 {
 
     #region Fields 
-    private static T _instance;
+    public static T _instance;
 
     private static readonly object Lock = new object();
 
@@ -62,7 +62,7 @@ public abstract class Singleton<T> : Singleton where T: MonoBehaviour
                 }
 
                 // if there are no instances
-                Debug.Log($"[{nameof(Singleton)} <{typeof(T)}>] An ins  tance is needed in the scene and no existing instance instances were found, so a new instance will be created.");
+                Debug.Log($"[{nameof(Singleton)} <{typeof(T)}>] An instance is needed in the scene and no existing instance instances were found, so a new instance will be created.");
 
                 //make a new instance
 
@@ -77,8 +77,6 @@ public abstract class Singleton<T> : Singleton where T: MonoBehaviour
                     Debug.LogWarning($"[({nameof(Singleton)}) <{typeof(T)}> was not found in Resources folder. Falling back to contructing as GameObject]");
                     return _instance = new GameObject($"({nameof(Singleton)}){typeof(T)}").AddComponent<T>();
                 }
-
-            
             }
         }
     }
@@ -113,6 +111,7 @@ public abstract class Singleton : MonoBehaviour
     {
         quitting = true;
     }
+
     #endregion
 }
 //Here be dragons! 

@@ -1604,6 +1604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 588386250862861922, guid: 5ba3d5213c8666948b2c331dc9247047, type: 3}
   BulletFireSound: {fileID: 8300000, guid: 1b7bdb21030e2834c8d2cbeaee7957a1, type: 3}
+  firingPoint: {fileID: 3380117859067579435}
 --- !u!114 &736834224469407724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,7 +1707,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e14b727a67e6894c934724e54f0580f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistent: 1
 --- !u!114 &7959833786811775832
 MonoBehaviour:
   m_ObjectHideFlags: 0

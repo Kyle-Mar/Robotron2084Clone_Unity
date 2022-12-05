@@ -12,6 +12,7 @@ public class Bullet : MonoBehaviour
     Collider col;
     Rigidbody rb;
     public AudioClip explodeClip;
+    public GameObject owner;
     void Start()
     {
         
@@ -42,13 +43,11 @@ public class Bullet : MonoBehaviour
         StartCoroutine(WaitForTrailThenDelete(trailRenderer.time));
 
     }
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obstacle"))
-        {
-            Instantiate(Resources.Load("BulletParticleEmitter"), transform.position, Quaternion.identity);
-            destroyBullet();
-        }
+
+        Instantiate(Resources.Load("BulletParticleEmitter"), transform.position, Quaternion.identity);
+        destroyBullet();
     }
 
     IEnumerator WaitForTrailThenDelete(float delay)

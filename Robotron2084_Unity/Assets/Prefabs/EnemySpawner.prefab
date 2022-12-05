@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2405363119391470777}
   - component: {fileID: 2405363119391470776}
   - component: {fileID: 2405363119391470779}
-  - component: {fileID: 2405363119391470778}
   - component: {fileID: 2405363119391470757}
   - component: {fileID: 2405363119391470756}
+  - component: {fileID: 6583056784527854337}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Enemy
@@ -111,20 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2949cd92393a58d47bfcba418daf00ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
   invincibilityFrames: 0
---- !u!114 &2405363119391470778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2405363119391470759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da94bc4e14cebc845a6e15a972a631ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  maxHealth: 0
 --- !u!114 &2405363119391470757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,3 +144,15 @@ MonoBehaviour:
   timeBetweenWaves: 5
   currentAngle: 0
   currentWave: 0
+--- !u!114 &6583056784527854337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405363119391470759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da94bc4e14cebc845a6e15a972a631ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

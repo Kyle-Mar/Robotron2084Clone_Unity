@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(PlayerFireBullet))]
+[RequireComponent(typeof(FireBullet))]
 public class PlayerMovement : MonoBehaviour
 {
     public Vector2 moveInput = new Vector2(0, 0);
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     Ray playerAim;
     Camera mainCamera;
     GameObject meshObject;
-    PlayerFireBullet playerFireBullet;
+    FireBullet playerFireBullet;
     Rigidbody rb;
     public PlayerInput playerInput;
 
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         mainCamera = GetComponentInChildren<Camera>(); 
-        playerFireBullet = GetComponent<PlayerFireBullet>();
+        playerFireBullet = GetComponent<FireBullet>();
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
 

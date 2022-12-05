@@ -12,11 +12,14 @@ public class Enemy : MonoBehaviour
         LevelManager.Instance.AddToEnemyCount(this.gameObject);
         health = GetComponent<Health>();
     }
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            health.takeDamage(10f);
+            if(collision.gameObject.GetComponent<Bullet>().owner.tag != "Enemy")
+            {
+                health.takeDamage(10f);
+            }
         }
     }
 }

@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 1669026114300777774}
   m_Layer: 0
   m_Name: Level Geo
-  m_TagString: Obstacle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

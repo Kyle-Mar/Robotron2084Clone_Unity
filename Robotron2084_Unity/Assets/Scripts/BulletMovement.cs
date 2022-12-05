@@ -27,7 +27,7 @@ public class BulletMovement : MonoBehaviour
         rb.velocity = bulletVelocity;
     }
 
-    public void setInstantaneousPlayerVelocity(Vector3 vel)
+    public void setInstantaneousOwnerVelocity(Vector3 vel)
     {
         playerVelocity = vel;
     }

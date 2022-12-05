@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : Enemy
+public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] GameObject player;
     GameObject meshObject;

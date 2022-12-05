@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingEnemy : Enemy
+public class ShootingEnemy : MonoBehaviour
 {
     [SerializeField] GameObject player;
     GameObject meshObject;
@@ -40,8 +40,8 @@ public class ShootingEnemy : Enemy
             bulletTimer.SetActive(false);
             Debug.Log("RUN AWAY!");
             isMovingTowardsPlayer = true;
-            meshObject.transform.LookAt(transform.position - playerPositionOnEnemyPlane);
-            rb.velocity = meshObject.transform.forward * speed;
+            meshObject.transform.LookAt((transform.position - playerPositionOnEnemyPlane).normalized + transform.position);
+            rb.velocity = (transform.position - playerPositionOnEnemyPlane).normalized * speed;
         }
         else if (10.0f > distance_to_player && distance_to_player >= 5.0f){
             Debug.Log("FIRE!");

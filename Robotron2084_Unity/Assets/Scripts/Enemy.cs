@@ -16,8 +16,9 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            if(collision.gameObject.GetComponent<Bullet>().owner.tag != "Enemy")
+            if (collision.gameObject.GetComponent<Bullet>().owner.tag != "Enemy")
             {
+                Debug.Log(health == null);
                 health.takeDamage(10f);
             }
         }

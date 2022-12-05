@@ -40,9 +40,12 @@ public class Timer : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
-        if(timer <= 0f)
+        if (timer <= 0f)
         {
-            timerCallback();
+            if (timerCallback != null)
+            {
+                timerCallback();
+            }
             if (looping)
             {
                 timer = maxTimer;

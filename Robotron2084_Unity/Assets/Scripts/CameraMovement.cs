@@ -14,6 +14,7 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player.OnPlayerHurt += Shake;
         playerScript = player.GetComponent<PlayerMovement>();
         playerTransform = player.GetComponent<Transform>();
         originalPos = transform.position;
@@ -54,5 +55,10 @@ public class CameraMovement : MonoBehaviour
             transform.position = interpolatedPosition;
         }
         //transform.rotation = originalRot;
+    }
+
+    void Shake()
+    {
+        Debug.Log("Player was hurt shaking camera!");
     }
 }

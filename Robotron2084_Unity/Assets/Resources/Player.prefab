@@ -1692,9 +1692,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2949cd92393a58d47bfcba418daf00ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   invincibilityFrames: 1
-  maxHealth: 0
+  maxHealth: 100
 --- !u!114 &1956527374534552946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1986,9 +1985,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1347201995945237891, guid: b2000a1c89ab10c44847641d07727d80, type: 3}
-  - {fileID: 657200081034304844, guid: b2000a1c89ab10c44847641d07727d80, type: 3}
-  - {fileID: -8528223005170771122, guid: b2000a1c89ab10c44847641d07727d80, type: 3}
+  - {fileID: 2100000, guid: 646a547f7edbb654ea0da28d03a5834d, type: 2}
+  - {fileID: 2100000, guid: b812a6151e13efa48a408961c9d47c3e, type: 2}
+  - {fileID: 2100000, guid: ad7c62343ffab2549858cf4212f6d364, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

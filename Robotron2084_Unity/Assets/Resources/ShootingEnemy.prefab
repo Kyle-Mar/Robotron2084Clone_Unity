@@ -63,7 +63,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 9f55007a8f2f52045b45579d14682db3, type: 2}
   - {fileID: 2100000, guid: d803cccf248707b4dacda8ce175c6524, type: 2}
-  - {fileID: -2773988979724539270, guid: 93e70901338443b488975be387ed2aa0, type: 3}
+  - {fileID: 2100000, guid: 7e941e8edfb23074c864acf3a21fcea8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   invincibilityFrames: 0
-  maxHealth: 0
+  maxHealth: 20
 --- !u!114 &1192236140197846601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4907,7 +4907,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9f55007a8f2f52045b45579d14682db3, type: 2}
+  - {fileID: 2100000, guid: 7e941e8edfb23074c864acf3a21fcea8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -18,7 +18,22 @@ ModelImporter:
   - first:
       74: 6518649853624424046
     second: MainSkeleton|WalkRight
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AccentMaterial
+    second: {fileID: 2100000, guid: b812a6151e13efa48a408961c9d47c3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LimbMaterial
+    second: {fileID: 2100000, guid: 646a547f7edbb654ea0da28d03a5834d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PlayerMainMetal
+    second: {fileID: 2100000, guid: ad7c62343ffab2549858cf4212f6d364, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -491,7 +506,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1

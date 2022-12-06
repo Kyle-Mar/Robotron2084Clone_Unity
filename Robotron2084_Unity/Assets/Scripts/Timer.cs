@@ -8,10 +8,11 @@ public class Timer : MonoBehaviour
 {
 
     private System.Action timerCallback;
-    private float maxTimer;
-    public float timer;
+    public float maxTimer { get; private set; }
+    public float timer { get; private set; }
     private bool looping;
     public bool active { get; private set; }
+    public bool selfDestructive {get; set;}
 
 
     public void SetTimer(float timer, System.Action timerCallback, bool looping)
@@ -27,7 +28,6 @@ public class Timer : MonoBehaviour
     {
         active = activeNotActive;
     }
-
     
 
     private void Update()
@@ -52,7 +52,14 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                Destroy(this);
+                if (selfDestructive)
+                {
+                    Destroy(this);
+                }
+                else
+                {
+                    active = false;
+                }
             }
         }
     }

@@ -38,13 +38,13 @@ public class ShootingEnemy : MonoBehaviour
         if (distance_to_player < 5.0f)
         {
             bulletTimer.SetActive(false);
-            Debug.Log("RUN AWAY!");
+            //Debug.Log("RUN AWAY!");
             isMovingTowardsPlayer = true;
             meshObject.transform.LookAt((transform.position - playerPositionOnEnemyPlane).normalized + transform.position);
             rb.velocity = (transform.position - playerPositionOnEnemyPlane).normalized * speed;
         }
         else if (10.0f > distance_to_player && distance_to_player >= 5.0f){
-            Debug.Log("FIRE!");
+            //Debug.Log("FIRE!");
             rb.velocity = Vector3.zero;
             isMovingTowardsPlayer = true;
             meshObject.transform.LookAt(playerPositionOnEnemyPlane);
@@ -58,7 +58,7 @@ public class ShootingEnemy : MonoBehaviour
         else if (distance_to_player < 20.0f)
         {
             bulletTimer.SetActive(false);
-            Debug.Log("IMMA GET YA");
+           // Debug.Log("IMMA GET YA");
             isMovingTowardsPlayer = true;
             currentDirection = playerPositionOnEnemyPlane;
             meshObject.transform.LookAt(currentDirection);
@@ -67,7 +67,7 @@ public class ShootingEnemy : MonoBehaviour
         else
         {
             bulletTimer.SetActive(true);
-            Debug.Log("WHERE?");
+            //Debug.Log("WHERE?");
             isMovingTowardsPlayer = false;
             currentDirection = currentRandomDirection;
         }

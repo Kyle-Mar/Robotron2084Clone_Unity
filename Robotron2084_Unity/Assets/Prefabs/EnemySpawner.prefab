@@ -114,6 +114,7 @@ MonoBehaviour:
   health: 50
   invincibilityFrames: 0
   maxHealth: 0
+  rend: {fileID: 2405363119391470777}
 --- !u!114 &2405363119391470757
 MonoBehaviour:
   m_ObjectHideFlags: 0

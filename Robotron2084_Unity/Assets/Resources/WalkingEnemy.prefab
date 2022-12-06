@@ -61,8 +61,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9f55007a8f2f52045b45579d14682db3, type: 2}
-  - {fileID: 2556976897196342731, guid: 93e70901338443b488975be387ed2aa0, type: 3}
-  - {fileID: -2773988979724539270, guid: 93e70901338443b488975be387ed2aa0, type: 3}
+  - {fileID: 2100000, guid: d97a4cbd064a2824da55d04d4b621d0a, type: 2}
+  - {fileID: 2100000, guid: 7e941e8edfb23074c864acf3a21fcea8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,9 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2949cd92393a58d47bfcba418daf00ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
   invincibilityFrames: 0
-  maxHealth: 0
+  maxHealth: 20
 --- !u!114 &1192236140197846707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  currentRandomDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1192236140197846601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4976,4 +4976,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da94bc4e14cebc845a6e15a972a631ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}

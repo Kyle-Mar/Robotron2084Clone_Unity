@@ -13,7 +13,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-
+    public delegate void PlayerHurtAction();
+    public static event PlayerHurtAction OnPlayerHurt;
 
     Health health;
 
@@ -21,7 +22,6 @@ public class Player : MonoBehaviour
     void Awake()
     {
         health = GetComponent<Health>();
-
     }
 
     
@@ -45,7 +45,12 @@ public class Player : MonoBehaviour
         //Debug.Log(collision.gameObject.name); 
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            float currentHealth = health.health;
             float newHealth = health.takeDamage(10f);
+            if(currentHealth != newHealth)
+            {
+                OnPlayerHurt?.Invoke();
+            }
             if(newHealth != -1)
             {
                 LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<HUDHealthBar>().SetHealthBarValue(newHealth, health.maxHealth);
@@ -59,7 +64,12 @@ public class Player : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Bullet>().owner.tag != "Player")
             {
+                float currentHealth = health.health;
                 float newHealth = health.takeDamage(3f);
+                if (currentHealth != newHealth)
+                {
+                    OnPlayerHurt?.Invoke();
+                }
                 if (newHealth != -1)
                 {
                     LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<HUDHealthBar>().SetHealthBarValue(newHealth, health.maxHealth);

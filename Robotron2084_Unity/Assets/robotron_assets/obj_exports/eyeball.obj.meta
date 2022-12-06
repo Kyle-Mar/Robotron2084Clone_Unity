@@ -3,7 +3,22 @@ guid: 93e70901338443b488975be387ed2aa0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eye_inside_mat
+    second: {fileID: 2100000, guid: 7e941e8edfb23074c864acf3a21fcea8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: outside_eye_mat
+    second: {fileID: 2100000, guid: d97a4cbd064a2824da55d04d4b621d0a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pupil_mat
+    second: {fileID: 2100000, guid: d47d43b235cf8644498a7a28ca957e27, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

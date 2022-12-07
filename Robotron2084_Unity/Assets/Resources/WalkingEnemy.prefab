@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2949cd92393a58d47bfcba418daf00ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rend: {fileID: 1192236138467914293}
+  health: 20
   invincibilityFrames: 0
   maxHealth: 20
 --- !u!114 &1192236140197846707

@@ -46,10 +46,10 @@ Shader "Hidden/PixelEffect"
                 float pixelSizeX = 1.0 / _ScreenParams.x;
                 float pixelSizeY = 1.0 / _ScreenParams.y;
 
-                float abberAmount = .01;
+                float abberAmount = 0;
 
-                float cellSizeX = _ScreenParams.x / 150.0 * pixelSizeX;
-                float cellSizeY = _ScreenParams.y / 150.0 * pixelSizeY;
+                float cellSizeX = _ScreenParams.x / 250.0 * pixelSizeX;
+                float cellSizeY = _ScreenParams.y / 250.0 * pixelSizeY;
 
                 float x = cellSizeX * floor(i.uv.x / cellSizeX);
                 float y = cellSizeY * floor(i.uv.y / cellSizeY);

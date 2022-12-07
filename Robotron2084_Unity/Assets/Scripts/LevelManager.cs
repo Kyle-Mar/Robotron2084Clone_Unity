@@ -20,7 +20,7 @@ public class LevelManager : Singleton<LevelManager>
     // list to keep track of all enemies
     public int enemyCount = 0;
     public GameObject PlayerObject = null;
-    public GameObject PreviousPlayerObject = null;
+    public float PreviousHealth = 100;
     public int PreviousScore = 0;
     public GameObject MusicPlayer = null;
     public GameObject HUDCanvasObject = null;
@@ -148,10 +148,7 @@ public class LevelManager : Singleton<LevelManager>
     
     public void ResetPlayer()
     {
-        if(!LevelManager.Instance.PreviousPlayerObject == null)
-        {
-            LevelManager.Instance.PlayerObject = LevelManager.Instance.PreviousPlayerObject;
-        }
+        PlayerObject.GetComponent<Health>().setHealth(PreviousHealth); 
         LevelManager.Instance.PlayerObject.transform.position = Vector3.zero;
 
     }
@@ -195,12 +192,14 @@ public class LevelManager : Singleton<LevelManager>
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        enemyCount = 0;
         DeinitalizeSingletons();
     }
 
     public void LoadVictoryMenu()
     {
         SceneManager.LoadScene("VictoryMenu", LoadSceneMode.Single);
+        enemyCount = 0;
         DeinitalizeSingletons();
     }
 
@@ -267,13 +266,13 @@ public class LevelManager : Singleton<LevelManager>
         else if (scenes[nextScene].Contains("Level"))
         {
             op = SceneManager.LoadSceneAsync(nextScene, LoadSceneMode.Single);
-            LevelManager.Instance.PreviousPlayerObject = LevelManager.Instance.PlayerObject;
             while (!op.isDone)
             {
                 yield return null;
             }
             changingLevels = null;
             LevelManager.Instance.PreviousScore = LevelManager.Instance.HUDCanvasObject.GetComponentInChildren<ScoreText>().GetScore();
+            PreviousHealth = PlayerObject.GetComponent<Health>().getHealth();
         }
         else {
             SceneManager.LoadScene("VictoryMenu", LoadSceneMode.Single);

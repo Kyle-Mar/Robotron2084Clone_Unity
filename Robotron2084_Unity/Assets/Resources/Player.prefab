@@ -581,6 +581,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7959833786811775842}
+  shakeDuration: 0
+  shakeAmount: 0.05
+  decreaseAmount: 100
 --- !u!114 &1895845928977565802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1708,6 +1711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e14b727a67e6894c934724e54f0580f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtClip: {fileID: 8300000, guid: 25a5316cebbafb344b2ae91cad786600, type: 3}
 --- !u!114 &7959833786811775832
 MonoBehaviour:
   m_ObjectHideFlags: 0

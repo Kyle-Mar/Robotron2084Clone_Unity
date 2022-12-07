@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
 {
     public delegate void PlayerHurtAction();
     public static event PlayerHurtAction OnPlayerHurt;
-
     Health health;
 
 

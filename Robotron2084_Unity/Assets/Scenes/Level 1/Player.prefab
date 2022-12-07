@@ -567,6 +567,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7950642055269596933}
+  shakeDuration: 0
+  shakeAmount: 0.05
+  decreaseAmount: 100
 --- !u!1 &3816554279447765557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 588386250862861922, guid: d4f9c622c0f390f46b0637e60ab97a97, type: 3}
   BulletFireSound: {fileID: 0}
+  firingPoint: {fileID: 0}
 --- !u!54 &7950642055467964598
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1664,6 +1668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2949cd92393a58d47bfcba418daf00ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rend: {fileID: 0}
   health: 100
   invincibilityFrames: 1
   maxHealth: 0
@@ -1679,7 +1684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e14b727a67e6894c934724e54f0580f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _persistent: 0
+  hurtClip: {fileID: 8300000, guid: 25a5316cebbafb344b2ae91cad786600, type: 3}
 --- !u!114 &7950642055269596991
 MonoBehaviour:
   m_ObjectHideFlags: 0

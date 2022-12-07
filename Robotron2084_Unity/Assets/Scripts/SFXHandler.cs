@@ -41,6 +41,7 @@ public class SFXHandler : Singleton<SFXHandler>
         source.outputAudioMixerGroup = mixerGroup;
         source.clip = clip;
         source.volume = PlayerPrefs.GetFloat("EffectsVolume");
+        source.pitch = Random.Range(0.75f, 1.0f);
         source.Play();
         //StartCoroutine(DestroyAfterClipLength(clip.length, SFXObject));
         Timer clipTimer = SFXObject.AddComponent<Timer>() as Timer;
